@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="true" threshold="debug"  xmlns:log4j="http://jakarta.apache.org/log4j/" >
+  <!-- $Id: log4j.xml,v 1.11 2007/08/10 15:10:12 fboller Exp $ -->
+  <!-- ===================================================================== -->
+  <!--                                                                       -->
+  <!--  Log4j Configuration                                                  -->
+  <!--                                                                       -->
+  <!-- ===================================================================== -->
+
+  <!-- | For more configuration infromation and examples see the Jakarta Log4j-->
+  <!-- | website: http://jakarta.apache.org/log4j-->
+
+  <!-- ============================== -->
+  <!-- Append messages to the console -->
+  <!-- ============================== -->
+
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+    <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler"/>
+    <param name="Threshold" value="INFO"/>
+    <param name="Target" value="System.out"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <!-- The default pattern: Date Priority [Category] Message\n -->
+      <param name="ConversionPattern" value="\nsmr %d{ABSOLUTE} %-5p [%c] %m\n"/>
+    </layout> 
+  </appender> 
+
+  <!-- ================================= -->
+  <!-- Preserve messages in a local file -->
+  <!-- ================================= -->
+
+  <!-- A time/date based rolling appender -->
+  <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+    <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler"/>
+    <param name="Threshold" value="DEBUG"/>
+    <!--    <param name="File" value="${java.io.tmpdir}/l4j.log"/>-->
+    <param name="File" value="l4j.log"/>
+    <param name="Append" value="false"/>
+
+    <!-- Rollover at midnight each day -->
+    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+
+    <!-- Rollover at the top of each hour <param name="DatePattern" value="'.'yyyy-MM-dd-HH"/> -->
+
+    <layout class="org.apache.log4j.PatternLayout">
+      <!-- The default pattern: Date Priority [Category] Message\n -->
+<!--      <param name="ConversionPattern" value="\nsmr %-5p [%c] %m\n"/>-->
+      <param name="ConversionPattern" value="\nsmr %d{ABSOLUTE} %-5p [%c] %m\n"/>
+
+      <!-- The full pattern: Date MS Priority [Category] (Thread:NDC) Message\n-->
+      <!--   <param name="ConversionPattern" value="%d %-5r %-5p [%c] (%t:%x) %m%n"/>-->
+
+    </layout>
+  </appender>
+
+  <!--  <appender name="sockethub" class="org.apache.log4j.net.SocketHubAppender">-->
+    <!--    <param name="Port" value="4560"/>-->
+    <!--    <param name="LocationInfo" value="false"/>-->
+    <!--  </appender>-->
+  <!-- -->
+  <!--  <param name="Port" value="50020"/>-->
+  <!-- -->
+  <!--  <param name="ConversionPattern" value="\n%d %-5p [%c] %m\n"/>-->
+
+  <!-- ================ -->
+  <!-- Limit categories -->
+  <!-- ================ -->
+
+  <category name="org"> <priority value="TRACE"/> </category>
+  <category name="com"> <priority value="TRACE"/> </category>
+  <category name="junit"> <priority value="TRACE"/> </category>
+
+<!--  <category name="org.hibernate.hql"> <priority value="OFF"/> </category>-->
+<!--  <category name="org.hibernate.SQL"> <priority value="OFF"/> </category>-->
+<!--  <category name="org.hibernate.engine.query.HQLQueryPlan"> <priority value="OFF"/> </category>-->
+
+
+  <!--  <category name="org.hibernate.util.JDBCExceptionReporter"> <priority value="ERROR"/> </category>-->
+  <!-- -->
+  <!--  <category name="weblogic"> <priority value="WARN"/> </category>-->
+  <!--  <category name="weblogic.kernel"> <priority value="WARN"/> </category>-->
+  <!--  <category name="org.springframework.core.CollectionFactory"> <priority value="WARN"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.xml.PluggableSchemaResolver"> <priority value="WARN"/> </category>-->
+  <!-- -->
+  <!--  <category name="org.apache.commons"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.hibernate.event.def"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.hibernate.pretty"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.hibernate.type"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.hibernate.util.DTDEntityResolver"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.hibernate.validator.ClassValidator"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.aop.aspectj"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.aop.framework.JdkDynamicAopProxy"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.aop.framework.ProxyFactory"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.BeanWrapperImpl"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.TypeConverterDelegate"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.support.DefaultListableBeanFactory"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.xml.DefaultDocumentLoader"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.xml.DefaultNamespaceHandlerResolver"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.context.support.ClassPathXmlApplicationContext"> <priority value="INFO"/> </category>-->
+  <!--  <category name="org.springframework.util.ClassUtils"> <priority value="INFO"/> </category>-->
+  <!-- -->
+  <!--  <category name="com.warnerbros.dete"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="com.warnerbros.dete.db"> <priority value="DEBUG"/> </category>-->
+  <!-- -->
+  <!--  <category name="org"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.apache"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.SQL"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.cfg"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.engine"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.id"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.impl"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.jdbc"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.loader"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.persister"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.hibernate.transaction"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.beans.CachedIntrospectionResults"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.jndi"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.orm"> <priority value="DEBUG"/> </category>-->
+  <!--  <category name="org.springframework.transaction"> <priority value="DEBUG"/> </category>-->
+
+  <category name="stdout"> <priority value="DEBUG"/> </category>
+  <category name="stderr"> <priority value="DEBUG"/> </category>
+
+  <!-- ======================= -->
+  <!-- Setup the Root category -->
+  <!-- ======================= -->
+  <!--  <appender-ref ref="sockethub"/>-->
+
+  <!--  <logger name="stdout" additivity="false">-->
+    <!--    <level value ="debug" /> -->
+    <!--    <appender-ref ref="STDOUT"/>-->
+    <!--  </logger>-->
+  <!--  -->
+
+  <root>
+    <priority value ="debug" /> 
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="FILE"/>
+  </root>
+</log4j:configuration>
+
+
