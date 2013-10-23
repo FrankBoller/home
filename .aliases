@@ -2,12 +2,6 @@
 
 alias sd='sdiff --strip-trailing-cr --width=233 --ignore-all-space --ignore-blank-lines --speed-large-files '
 
-# 10.52.5.35      ptfx   protoLinux   di-flor-lbd0d8c.wdw.disney.com
-# 10.52.62.41     dvfx   devLinux1    di-flor-lbd1a89.idmzsena.idmz.disney.com
-# 139.104.197.6   dvox   devLinux0    pl-ohco-dvvm003.idmzswna.idmz.disney.com
-# 139.104.31.13   q1ox   qaLinux1     pl-ohco-qa001.idmzswna.idmz.disney.com
-# 139.104.31.18   q2ox   qaLinux2     pl-ohco-qa002.idmzswna.idmz.disney.com
-
 # see: http://linuxproblem.org/art_9.html
 
 export    scpp=fjb@p
@@ -24,31 +18,20 @@ alias     sshs="( echo ${d}scps           ; ssh -Y ${d}scps )"
 alias     sshu="( echo ${d}scpu           ; ssh -Y ${d}scpu )"
 
 # Development
-#alias sftpd='echo "sftp dcradm@pbs-crm1";sftp dcradm@172.18.2.165'
+#alias sftpd='echo "sftp devadm@pbs-crm1";sftp dcradm@192.168.10.10'
 
 alias win="nohup we /e,. > /dev/null 2>&1 &"
-
-# alias sd='sdiff --width=140 --speed-large-files --ignore-blank-lines --minimal --ignore-space-change --expand-tabs'
+alias sd='sdiff --width=140 --speed-large-files --ignore-blank-lines --minimal --ignore-space-change --expand-tabs'
 
 # Put aliases in this file
-# The format for aliases is:
-# alias foo='bar'
-
-#---------------------------------------------------------------------------
 alias a='man -k'
 #alias cls='clear; for ((i=0; i<90; i++)) { echo; }; clear'
 alias cls='for ((i=0; i<90; i++)) { echo; };'
 alias env='env | sort'
 alias f=finger
 alias h='history | tail -60'
-alias ie='/.ie/IEXPLORE.EXE '
-alias j5='. ~/.env/setj5Env.sh'
-alias j6='. ~/.env/setj6Env.sh'
+# alias ie='/.ie/IEXPLORE.EXE '
 alias j='jobs -l'
-# alias jbash='export CLASSPATH=${JAVACLASSPATH}; export PS1=${PSJ}'
-# alias je1='java -mx16m -classpath '"$CLASSPATH;e:\\Program Files\\jEdit"' 3.0.2\\jedit.jar org.gjt.sp.jedit.jEdit '
-alias je='java -mx16m org.gjt.sp.jedit.jEdit '
-# alias jin='java Jindent -p d:\\p\\Jindent\\DeluxeSun-Style-doc.jin -unix -nobak'
 alias l='ls -lF'
 alias ll='ls -alF'
 alias lsf='ls -F'
@@ -56,77 +39,19 @@ alias lt='ls -alFt'
 alias lh='ls -alFt | head -40'
 alias lth='ls -alFt | head'
 alias print='lpr.sh'
-alias ph='${ANT_HOME}/bin/ant ${JAVA_OPTS} -projecthelp'
-alias ant='${ANT_HOME}/bin/ant ${JAVA_OPTS}'
-# alias maven='${MAVEN_HOME}/bin/maven -b ${JAVA_OPTS}'
-# alias mavenall='${MAVEN_HOME}/bin/maven ${JAVA_OPTS} -q doitall'
+# alias ph='${ANT_HOME}/bin/ant ${JAVA_OPTS} -projecthelp'
+# alias ant='${ANT_HOME}/bin/ant ${JAVA_OPTS}'
 
-alias mvn='${MAVEN_HOME}/bin/mvn'
+# alias mvn='${MAVEN_HOME}/bin/mvn'
 # alias mvntc='${MAVEN_HOME}/bin/mvn -Dmaven.test.skip=true -Ptomcat clean install'
-alias mvntc='${MAVEN_HOME}/bin/mvn -Ptomcat clean install'
 alias eff='${MAVEN_HOME}/bin/mvn -o help:effective-pom > effective-pom.txt'
-alias mvnc='${MAVEN_HOME}/bin/mvn -o compile'
-alias mvni='${MAVEN_HOME}/bin/mvn -o install'
-alias mvnp='${MAVEN_HOME}/bin/mvn -o package'
-alias jetty='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS}/jre jetty6:run'
+# alias jetty='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS}/jre jetty6:run'
 alias mvnnotest='mvn -Dmaven.test.skip=true'
-# alias mvn='${MAVEN_HOME}/bin/mvn -npu ${JAVA_OPTS}/jre -Dmaven.test.skip=true'
-# alias mvntest='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS}/jre'
-# alias mvnreport='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS} surefire-report:report'
 
-alias jarinstall='${MAVEN_HOME}/bin/maven ${JAVA_OPTS} -q jar:install'
+# alias sqldev1='sqlplus iclm/iclm@csond001.acme.pvt:1522/clmdev.cp.acme.com'
+# alias sqll='sqlplus d2/d2@XE'
 
-#alias sqldev1='sqlplus iclm/iclm@csond001.disney.pvt:1522/clmdev.cp.disney.com'
-# alias sqlpi='sqlplus clmintg_poc/clmintg_poc@csond001.disney.pvt:1521/ngddev'
-# alias sqlp='sqlplus CLMINTG_POC/CLMINTG_POC@NGDDEV'
-# alias sqldev1='sqlplus iclm/iclm@csond001.idmzswna.idmz.disney.com:1522:clmdev'
-# alias sqldev2='sqlplus iclm/iclm@csond001.idmzswna.idmz.disney.com:1522:clmdev2'
-# alias sqll='sqlplus iclm/iclm@XE'
-# alias sqlb='sqlplus iclm/iclm@XEB'
-# alias sqlqa1='sqlplus iclm/iclm@clmqa'
-# alias sqlqa2='sqlplus iclm/iclm@clmqa2'
-
-# alias sq_bpmdev130='echo sqlplus bpmdev130@DETEDEV;sqlplus -S bpmdev130/bpmdev130@DETEDEV'
-# alias sq_briandev130='echo sqlplus briandev130@DETEDEV;sqlplus -S briandev130/briandev130@DETEDEV'
-# alias sq_cuongdev130='echo sqlplus cuongdev130@DETEDEV;sqlplus -S cuongdev130/cuongdev130@DETEDEV'
-# alias sq_datdev130='echo sqlplus datdev130@DETEDEV;sqlplus -S datdev130/datdev130@DETEDEV'
-# alias sq_dete130db='echo sqlplus dete130@detedb;sqlplus -S dete130/dete130@detedb'
-# alias sq_dete130dev='echo sqlplus dete130@DETEDEV;sqlplus -S dete130/dete130@DETEDEV'
-# alias sq_jerrydev130='echo sqlplus jerrydev130@DETEDEV;sqlplus -S jerrydev130/jerrydev130@DETEDEV'
-# alias sq_stephdev130='echo sqlplus stephdev130@DETEDEV;sqlplus -S stephdev130/stephdev130@DETEDEV'
-# alias sq_dete_prodbkp130='echo sqlplus dete_prodbkp130@DETEDEV;sqlplus -S dete_prodbkp130/dete_prodbkp130@DETEDEV'
-# 
-# # alias sq_paul132='echo sqlplus dete@10.140.204.48;sqlplus -S dete/dete@10.140.204.48'
-# alias sq_dete132dev='echo sqlplus dete132@DETEDEV;sqlplus -S dete132/dete132@DETEDEV'
-# 
-# alias frankdev133='echo sqlplus frankdev133@DETEDEV;sqlplus -S frankdev133/frankdev133@DETEDEV'
-# alias sq_dete133dev='echo sqlplus dete133@DETEDEV;sqlplus -S dete133/dete133@DETEDEV'
-# alias sqlocal133='echo sqlplus dete@localhost;sqlplus -S dete/dete@localhost'
-# 
-# alias dete133gold_prod@DETEDEV='echo sqlplus dete133gold_prod@DETEDEV@DETEDEV;sqlplus -S dete133gold_prod@DETEDEV/dete133gold_prod@DETEDEV@DETEDEV'
-
-# aliaz zqdev130dev='echo zqlpluz dev130@DETEDEV;zqlpluz -S dev130/dev130@DETEDEV'
-
-# alias sp='echo sqlplus names@saturn;sqlplus names/names@saturn'
-# alias saturn='echo sqlplus names@saturn;sqlplus names/names@saturn'
-
-# aliaz zp='echo zqlpluz dldev dev817;zqlpluz dldev/dldev@dev817'
-# aliaz zpd='echo zqlpluz dldev dev817;zqlpluz dldev/dldev@dev817'
-# aliaz zpj='echo zqlpluz jmzuzer dev817;zqlpluz jmzuzer/jmzuzer@dev817'
-# aliaz zpa='echo zqlpluz jmzadmin dev817;zqlpluz jmzadmin/jmzadmin@dev817'
-# aliaz zpz='echo zqlpluz zyz dev817;zqlpluz zyz/change_on_inztall@dev817'
-# aliaz who7="zqlpluz zyz/change_on_inztall@dev817 \"@$(cygpath -w $HOME/whoDev817.zql)\""
-
-# aliaz zp1='echo zqlpluz FJB_V1;zqlpluz FJB_V1/FJB_V1@FJB'
-# aliaz zpf='echo zqlpluz FJB;zqlpluz ADVERTISING_V2/ADVERTISING_V2@FJB'
-# aliaz zpp='echo zqlpluz PORSCHE;zqlpluz ADVERTISING_V2/ADVERTISING_V2@PORSCHE'
-# aliaz zpz='echo zqlpluz SATURN;zqlpluz ADVERTISING_V2/ADVERTISING_V2@SATURN'
-
-# aliaz zpc='echo zqlpluz CHEVY;zqlpluz ADVERTISING_V2/ADVERTISING_V2@CHEVY'
-#alias which='type -path'
 alias which='type -ap'
-
-alias jc='echo "javac -d $CDIR"; javac -d $CDIR '
 
 alias d='dirs -v'
 alias m='popd > /dev/null; dirs -v'
@@ -141,20 +66,9 @@ alias swdirs='find * -mindepth 0 -maxdepth 0 -type d | fgrep -v CVS'
 alias showfiles='find * -mindepth 0 -maxdepth 0 -type f'
 alias swfiles='find * -mindepth 0 -maxdepth 0 -type f'
 
-#alias cvsadapters='(ssh src ls -a /usr/local/rep/csp-adapters; echo "ssh src ls -a /usr/local/rep/csp-adapters" 1>&2)'
-alias cvsls='ssh src ls -a $(cut -f4 -d: CVS/Root)/$(cat CVS/Repository)'
-alias diradd='find * -type d | fgrep -v CVS | xargs cvs.exe add'
-alias imp='cvs.exe --lf -q ci -m "initial import" '
-alias look='cvs.exe --lf -nq up '
-alias up='cvs.exe --lf -n up'
-alias wip='cvs.exe --lf -q ci -m "work in progress" '
-alias pomstat='echo "cvs.exe status -v pom.xml" & cvs.exe status -v pom.xml'
+# alias cvsls='ssh src ls -a $(cut -f4 -d: CVS/Root)/$(cat CVS/Repository)'
 
-alias wd='cygpath -aw . | sed  "s;\\\\;\\\\\\\\;g" | sed "s; ;\\\\ ;g" '
-# alias w2='export wd=$(cygpath -aw . | sed  "s;\\\\;\\\\\\\\;g" | sed "s; ;\\\\ ;g"); echo '$wd''
-# alias cd 'cd \!*, set prompt="\n[`pwd`]\n($(uname -a):$(whoami) \!)'
-# alias src='export src="$(pwd)"'
-# alias dest='export dest="$(pwd)"'
+# alias wd='cygpath -aw . | sed  "s;\\\\;\\\\\\\\;g" | sed "s; ;\\\\ ;g" '
 
 alias dest='eval $(sets.sh dest); tail -1 ~/links/.gets'
 alias here='eval $(sets.sh here); tail -1 ~/links/.gets'
@@ -163,13 +77,6 @@ alias src='eval $(sets.sh src); tail -1 ~/links/.gets'
 alias gets='. ~/links/.gets'
 alias c='. ~/scripts/chdir.sh'
 
-# elif [ "$bn" = "setdirs" ] ; then dirs -p | sort -u > /tmp/setdirs
-# elif [ "$bn" = "getdirs" ] ; then {dirs -c; for getdir in $(cat /tmp/setdirs); do pushd $arg; done; dirs -l}
-
 alias trpath='echo $PATH | tr : "\\n" '
+
 alias gen='mvn archetype:generate'
-alias gennew='cd $hibernate && chmod -R a+rw . && cd $ormGeneration && bin/genhibernate.sh -nce && bin/genhibernate.sh && bin/genhibernate.sh -nin'
-alias genold='cd $hibernate && chmod -R a+rw . && cd $ormGeneration && bin/genhibernate.sh -nce && bin/genhibernate.sh && bin/genhibernate.sh -nio'
-alias hibclean='cd $hibernate && mvn clean && mvneclipse.sh -nce'
-alias hibnew='hibclean && gvim pom.xml && chmod -R a+rw . && mvneclipse.sh -nc'
-alias hibold='hibclean && chmod -R a+rw . && mvneclipse.sh -nc'
