@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 id='$Id: gb.sh,v 1.3 2007/07/09 16:34:05 fboller Exp $'
 #cat <<EOF
 #

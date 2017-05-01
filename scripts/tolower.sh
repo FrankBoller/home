@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 id='$Id: tolower.sh,v 1.19 2007/07/23 13:59:30 fboller Exp $'
 cat <<EOF
 

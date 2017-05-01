@@ -1,5 +1,4 @@
 #!/bin/sh
-# set -x
 
 # echo "CHERE_INVOKING ${CHERE_INVOKING}"
 
@@ -10,39 +9,29 @@
 shopt -s expand_aliases
 umask 0000
 
-test "monster" = "$HOSTNAME" && export DISPLAY=monster:0.0
-
-export HISTFILE=$HOME/.history_bash
-export HISTFILESIZE=3000;# default is 500
-export HISTCONTROL=ignoreboth
-test "$OSTYPE" = "cygwin" && export TERM=cygwin
-
-# export CVSROOT=":local:${SYSTEMDRIVE}\local\cvsHome"
-# export CVSROOT=":pserver:bollf003@host.acme.com:/main/cvs/LFS/cvsroot_dev"
-
-EDITOR=gvim
-FCEDIT=vi
-
-export MANPATH=/usr/local/man:/usr/share/man:/usr/man:/usr/ssl/man:/usr/X11R6/man:/usr/X11R6/share/man
-export PATH=${HOME}/links:${HOME}/scripts:${PATH}
-test "$OPATH" = "" && export OPATH=${PATH}
-
-# get prev env
-if [ -f ~/links/.gets ] ; then . ~/links/.gets; fi
-
-export INCLUDE=.
-export LIB=
-export MSDEVDIR=
-export NLSPATH=
-# do not clear screen after less has finished
-export LESS=-X
 export d='$'
 export n=\\n
 export nl=$(echo)
 export q='"'
 export s="'"
-export xlatd=" xargs ls -latd "
+
+test "$OSTYPE" = "cygwin" && export TERM=cygwin
+export DISPLAY=monster:0.0; # export DISPLAY=$(hostname):0.0
+export EDITOR=gvim
+export FCEDIT=vi
+export HISTCONTROL=ignoreboth
+export HISTFILE=$HOME/.history_bash
+export HISTFILESIZE=3000;# default is 500
+export INCLUDE=.
+export LESS=-X; # do not clear screen after less has finished
+export LIB=
+export MANPATH=/usr/local/man:/usr/share/man:/usr/man:/usr/ssl/man:/usr/X11R6/man:/usr/X11R6/share/man
+export MSDEVDIR=
 export NLS_DATE_FORMAT="dd-mon-yyyy hh24:mi:ss"
+export NLSPATH=
+export OPATH=${PATH}
+export TERM=cygwin; #TERM=ansi
+export xlatd=" xargs ls -latd "
 
 function cdd () {
   pushd .; cd $(dirname $1);
@@ -59,28 +48,42 @@ function pd () {
 
 function u() { cygpath -u "$1"; }
 
-if [ -f "${CHERE_INVOKING}" ] ; then
-  . ${CHERE_INVOKING}
-else
-  . ~/.envrc
-fi
-source $HOME/.aliases
+# if [ -f "${CHERE_INVOKING}" ] ; then
+#   . ${CHERE_INVOKING}
+# else
+#   . ~/.envrc
+# fi
 
-# set -x
-if [ ${#ARGS_BATCH} != 0 ] ; then
-  # echo "ARGS_BATCH:{${ARGS_BATCH}}"
-  #  ARGS_WIN=$(cygpath -u $ARGS_BATCH)
-  for arg in ${ARGS_BATCH[*]}; do
-    filePath=$(cygpath $(echo $arg | sed -e 's/"//g' ))
-    # echo "filePath:{${filePath}}"
-    if [ -f ${filePath} -o -d ${filePath} ] ; then
-      arg=${filePath}
-      # echo "arg:{${arg}}"
-    fi
-    ARGS_WIN="${ARGS_WIN}${arg} "
-  done
-fi
+export PATH=/.fjb/.fabric8/bin:${PATH}
+export PATH=${HOME}/links:${PATH}
+export PATH=${HOME}/scripts:${PATH}
 
-if [ ${#ARGS_WIN} != 0 ] ; then
-  eval ${ARGS_WIN}
-fi
+# if [ ${#ARGS_BATCH} != 0 ] ; then
+#   # echo "ARGS_BATCH:{${ARGS_BATCH}}"
+# #  ARGS_WIN=$(cygpath -u $ARGS_BATCH)
+#   for arg in ${ARGS_BATCH[*]}; do
+#     filePath=$(cygpath $(echo $arg | sed -e 's/"//g' ))
+#     # echo "filePath:{${filePath}}"
+#     if [ -f ${filePath} -o -d ${filePath} ] ; then
+#       arg=${filePath}
+#       # echo "arg:{${arg}}"
+#     fi
+#     ARGS_WIN="${ARGS_WIN}${arg} "
+#   done
+# fi
+# 
+# if [ ${#ARGS_WIN} != 0 ] ; then
+#   eval ${ARGS_WIN}
+# fi
+
+[[ -f ~/.aliases ]] && . ~/.aliases
+[[ -f ~/links/.gets ]] && . ~/links/.gets; # get prev env
+export MAVEN_HOME=${M2_HOME}
+export CLASSPATH=
+
+#export KUBERNETES_DOMAIN=vagrant.f8
+#export DOCKER_HOST=tcp://vagrant.f8:2375
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/home/fjb/.sdkman"
+# [[ -s "/home/fjb/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fjb/.sdkman/bin/sdkman-init.sh"

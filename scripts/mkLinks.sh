@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 id='$Id: mkLinks.sh,v 1.69 2007/08/30 17:22:58 fboller Exp $'
 cat <<EOF
 
@@ -9,16 +9,36 @@ cat <<EOF
 
 EOF
 
-# if [ -f ~/.aliases ] ; then
-#     shopt -s expand_aliases
-#     source ~/.aliases
-# fi
-# 
-# bn=$(basename $0 .sh)
-# logDir="${HOME}/tmp/logDir/${bn}/$(now.sh)"
-# mkdir -p $logDir
-# logFile="${logDir}/logFile.log"
-#################################
+rm -f /.${USER}   && ln -s "C:/users/$USER"         /.${USER}
+
+rm -f /.${USER}.f && ln -s "F:/users/$USER"         /.${USER}.f
+rm -f /.desktop.f && ln -s "F:/users/$USER/desktop" /.desktop.f
+rm -f /.mydocs.f  && ln -s "F:/users/$USER/docs"    /.mydocs.f
+
+for arg in desktop homeroot mydocs smprograms sysdir windir; do
+  eval $(printf 'rm -f /.%s && ln -s "$(cygpath --%s)" /.%s;\n' $arg $arg $arg)
+done
+
+# following have --allusers versions
+for arg in desktop mydocs smprograms ; do
+  eval $(printf 'rm -f /.%s.p && ln -s "$(cygpath --allusers --%s)" /.%s.p;\n' $arg $arg $arg)
+done
+
+# workarounds for dir paths with spaces
+( IFS=;
+  declare -A map
+  map[acrobatReader]='C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader'
+  map[internetExplorer]='C:\Program Files\Internet Explorer'
+  map[mozillaFirefox]='C:\Program Files (x86)\Mozilla Firefox'
+  map[programFiles]='C:\Program Files'
+  map[programFilesX86]='C:\Program Files (x86)'
+  map[windowsLiveShared]='C:\Program Files (x86)\Windows Live\Shared'
+  map[x86]='C:\Program Files (x86)'
+
+  for arg in ${!map[@]}; do
+    eval $(printf "rm -f /.%s && ln -s '%s' /.%s\n" "$arg" "${map[$arg]}" "$arg")
+  done
+)
 
 dirLinks=~/links                                            ;# define links dir
 test -f $dirLinks/.gets && cp $dirLinks/{.dirs,.gets} ~/tmp ;# save .gets file
@@ -27,27 +47,23 @@ mkdir -p $dirLinks                                          ;# recreate
 cd $dirLinks                                                ;# cd to dir
 test -f ${HOME}/tmp/.gets && mv ${HOME}/tmp/{.dirs,.gets} $dirLinks     ;# replace .gets file
 
-# ln -s "${SYSTEMDRIVE}\\local\\util\\blat.exe" blat
+# following are .exe links for paths with spaces
+(
+  declare -A map
+  map[acroRd32]='/.acrobatReader/AcroRd32.exe'
+  map[e]='/.sysdir/explorer.exe'
+  map[firefox]='/.mozillaFirefox/firefox.exe'
+  map[git]='/.programFiles/Git/bin/git.exe'
+  map[ping]='/.sysdir/PING.exe'
+  map[rar]='/.programFiles/WinRAR/Rar.exe'
+  map[unRar]='/.programFiles/WinRAR/UnRar.exe'
 
-ln -s '/.programFiles/Internet Explorer/iexplore.exe' .
-ln -s "/.programFiles/Internet Explorer/iexplore.exe" ie
-ln -s "/.programFiles/Mozilla Firefox/firefox.exe" .
-#ln -s "/.programFiles/Mozilla Thunderbird/thunderbird.exe" .
-ln -s $(cygpath -ams "${SYSTEMDRIVE}/PROGRA~1/Adobe/READER~1.0/Reader/AcroRd32.exe") .
-ln -s $(cygpath -ams /PROGRA~1/WINDOW~1/ACCESS~1/wordpad.exe) .
-#ln -s /.programFiles/Opera/Opera.exe* .
-#ln -s /.programFiles/Subversion/bin/svn.exe .
-#ln -s /.programFiles/TortoiseCVS/cvs.exe .
-ln -s /.programFiles/Vim/vim73/gvim.exe .
-ln -s /.programFiles/Vim/vim73/vim.exe .
-# ln -s /.programFiles/WinMerge/WinMerge.exe* .
-ln -s /.programFiles/WinMerge/WinMergeU.exe* .
-ln -s /.programFiles/WinRAR/Rar.exe* .
-ln -s /.programFiles/WinRAR/UnRAR.exe* .
-ln -s /.windir/explorer.exe .
-ln -s /.windir/explorer.exe e
-ln -s /.windir/explorer.exe we
-ln -s /.windir/system32/ping wping
+  for arg in ${!map[@]}; do
+    eval $(printf 'rm -f %s && ln -s %s %s\n' "$arg" "$s${map[$arg]}$s" "$arg")
+  done
+)
+
+# ln -s "${SYSTEMDRIVE}\\local\\util\\blat.exe" blat
 
 for arg in Expr Http IcWord NakedException SQLException UrlPathLine Word; do ln -s ../scripts/findRefJavaExpr.sh findRefJava$arg; done
 for arg in bld countTypes cvt cwd fifo gimp hl hman izCompile job lame mkIcons pump save wm; do ln -s ../scripts/$arg.sh $arg; done

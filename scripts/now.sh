@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 id='$Id: now.sh,v 1.12 2006/10/02 14:26:52 fboller Exp $'
 # cat <<EOF
 # 

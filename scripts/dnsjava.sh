@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 Id='$Id: dnsjava.sh,v 1.9 2007/08/30 17:20:03 fboller Exp $'
 cat <<EOF
 

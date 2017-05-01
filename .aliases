@@ -3,34 +3,23 @@
 alias sd='sdiff --strip-trailing-cr --width=233 --ignore-all-space --ignore-blank-lines --speed-large-files '
 
 # see: http://linuxproblem.org/art_9.html
-
-export    scpp=fjb@p
-export    scpr=fjb@ruby
-export    scpd=bitnami@redmine
-export    scpg=bitnami@gitlab
 export    scps=fjb@s12
 export    scpu=anon@u1304
-alias     sshd="( echo ${d}scpd           ; ssh -Y ${d}scpd )"
-alias     sshg="( echo ${d}scpg           ; ssh -Y ${d}scpg )"
-alias     sshp="( echo ${d}scpp           ; ssh -Y ${d}scpp )"
-alias     sshr="( echo ${d}scpr           ; ssh -Y ${d}scpr )"
 alias     sshs="( echo ${d}scps           ; ssh -Y ${d}scps )"
 alias     sshu="( echo ${d}scpu           ; ssh -Y ${d}scpu )"
 
-# Development
-#alias sftpd='echo "sftp devadm@pbs-crm1";sftp dcradm@192.168.10.10'
-
 alias win="nohup we /e,. > /dev/null 2>&1 &"
-alias sd='sdiff --width=140 --speed-large-files --ignore-blank-lines --minimal --ignore-space-change --expand-tabs'
+
+# alias sd='sdiff --width=140 --speed-large-files --ignore-blank-lines --minimal --ignore-space-change --expand-tabs'
 
 # Put aliases in this file
 alias a='man -k'
 #alias cls='clear; for ((i=0; i<90; i++)) { echo; }; clear'
 alias cls='for ((i=0; i<90; i++)) { echo; };'
+alias cls2='cmd /c cls'
 alias env='env | sort'
 alias f=finger
 alias h='history | tail -60'
-# alias ie='/.ie/IEXPLORE.EXE '
 alias j='jobs -l'
 alias l='ls -lF'
 alias ll='ls -alF'
@@ -41,15 +30,14 @@ alias lth='ls -alFt | head'
 alias print='lpr.sh'
 # alias ph='${ANT_HOME}/bin/ant ${JAVA_OPTS} -projecthelp'
 # alias ant='${ANT_HOME}/bin/ant ${JAVA_OPTS}'
-
-# alias mvn='${MAVEN_HOME}/bin/mvn'
-# alias mvntc='${MAVEN_HOME}/bin/mvn -Dmaven.test.skip=true -Ptomcat clean install'
-alias eff='${MAVEN_HOME}/bin/mvn -o help:effective-pom > effective-pom.txt'
-# alias jetty='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS}/jre jetty6:run'
+alias eff='mvn -o help:effective-pom > effective-pom.txt'
+alias mvnc='mvn -o compile'
+alias mvni='mvn -o install'
+alias mvnp='mvn -o package'
+alias jetty='mvn ${JAVA_OPTS}/jre jetty6:run'
 alias mvnnotest='mvn -Dmaven.test.skip=true'
-
-# alias sqldev1='sqlplus iclm/iclm@csond001.acme.pvt:1522/clmdev.cp.acme.com'
-# alias sqll='sqlplus d2/d2@XE'
+# alias mvnreport='${MAVEN_HOME}/bin/mvn ${JAVA_OPTS} surefire-report:report'
+# alias jarinstall='mvn ${JAVA_OPTS} -q jar:install'
 
 alias which='type -ap'
 
@@ -66,17 +54,12 @@ alias swdirs='find * -mindepth 0 -maxdepth 0 -type d | fgrep -v CVS'
 alias showfiles='find * -mindepth 0 -maxdepth 0 -type f'
 alias swfiles='find * -mindepth 0 -maxdepth 0 -type f'
 
-# alias cvsls='ssh src ls -a $(cut -f4 -d: CVS/Root)/$(cat CVS/Repository)'
-
-# alias wd='cygpath -aw . | sed  "s;\\\\;\\\\\\\\;g" | sed "s; ;\\\\ ;g" '
-
 alias dest='eval $(sets.sh dest); tail -1 ~/links/.gets'
 alias here='eval $(sets.sh here); tail -1 ~/links/.gets'
 alias sets='eval $(sets.sh); tail -1 ~/links/.gets'
 alias src='eval $(sets.sh src); tail -1 ~/links/.gets'
-alias gets='. ~/links/.gets'
+alias gets='. ~/links/.gets && cat ~/links/.gets'
 alias c='. ~/scripts/chdir.sh'
 
 alias trpath='echo $PATH | tr : "\\n" '
-
 alias gen='mvn archetype:generate'

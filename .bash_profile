@@ -39,3 +39,6 @@ fi
 #   INFOPATH=${HOME}/info:${INFOPATH}
 # fi
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/home/fjb/.sdkman"
+# [[ -s "/home/fjb/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fjb/.sdkman/bin/sdkman-init.sh"

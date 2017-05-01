@@ -59,18 +59,22 @@ runtime! synmenu.vim
 :set   expandtab
 " :set   lines=35
 :set   lines=64
+:set   linebreak
 :set   shiftwidth=2
 :set   smarttab
 :set   tabstop=2
 :set   tags=./tags,tags,c:\util\tags\tags
 :set   terse
 " :set   textwidth=150
-:set   textwidth=1024
+":set   textwidth=1024
+:set   textwidth=0
 :set   visualbell
 :set noignorecase
+:set nolist  " list disables linebreak
 :set nonumber
 :set nowarn
 :set   wrap
+:set   wrapmargin=0
 :set nowrapscan
 :au GUIEnter * simalt ~x
 
@@ -111,7 +115,7 @@ filetype plugin on
 if has("autocmd")
 
  " In text files, always limit the width of text to 78 characters
- autocmd BufRead *.txt set tw=78
+" or not :) autocmd BufRead *.txt set tw=78
 
  augroup cprog
   " Remove all cprog autocommands
